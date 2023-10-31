@@ -12,9 +12,10 @@ public class Main {
     }
 
     public static class SmashWords {
-
         public static String smash (String ... words){
-            return String.join(" ", words);
+            return String.join(" ", words).trim();
+            // .join()  method concatenates the given elements with the delimiter and returns the concatenated string
+            // .trim() method gets rid of all the spaces before and after the String
         }
     }
 
