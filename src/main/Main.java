@@ -2,6 +2,9 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -13,9 +16,10 @@ public class Main {
 
     public static class SmashWords {
         public static String smash (String ... words){
-            return String.join(" ", words);
-            // The String. join() method is a static method in the String class
-            // that concatenates one or more strings with a delimiter added between each String
+            return Stream.of(words).collect(Collectors.joining(" "));
+            //  stream.collect() method is used to perform a mutable reduction operation
+            //  on the elements of a stream. It returns a new mutable object containing
+            //  the results of the reduction operation.
         }
     }
 
