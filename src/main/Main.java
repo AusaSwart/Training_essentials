@@ -2,6 +2,7 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,13 +15,7 @@ public class Main {
 
     public static class SmallestIntegerFinder {
         public static int findSmallestInt(int[] args) {
-
-            int smallest = args[0];
-            for (Integer arg: args) {
-                if ( smallest > arg )
-                    smallest = arg;
-            }
-            return smallest;
+            return IntStream.of(args).min().getAsInt();
         }
     }
 
