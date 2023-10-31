@@ -13,8 +13,12 @@ public class Main {
 
     public static class SmashWords {
         public static String smash (String ... words){
-            return String.join(" ", words).trim();
-            // .join()  method concatenates the given elements with the delimiter and returns the concatenated string
+            StringBuilder str = new StringBuilder();
+            for (String word : words) {
+                str.append(word).append(" ");
+            }
+            return str.toString().trim();
+            // .append() a StringBuilder and StringBuffer class method used to append a value to the current sequence
             // .trim() method gets rid of all the spaces before and after the String
         }
     }
