@@ -13,13 +13,9 @@ public class Main {
 
     public static class SmashWords {
         public static String smash (String ... words){
-            StringBuilder str = new StringBuilder();
-            for (String word : words) {
-                str.append(word).append(" ");
-            }
-            return str.toString().trim();
-            // .append() a StringBuilder and StringBuffer class method used to append a value to the current sequence
-            // .trim() method gets rid of all the spaces before and after the String
+            return String.join(" ", words);
+            // The String. join() method is a static method in the String class
+            // that concatenates one or more strings with a delimiter added between each String
         }
     }
 
