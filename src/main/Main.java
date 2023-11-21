@@ -2,46 +2,80 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.IntStream;
+import java.util.Objects;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class Main {
     public static void main(String[] args) {
-        System.out.print(" Args 1, 2, -15, 29. Smallest one is ");
-        System.out.println(SmallestIntegerFinder.findSmallestInt(new int[]{1, 2, -15, 29}));
+        System.out.print(" Game r-p-s started: ");
+        System.out.println(Rps.game("rock", "paper"));
     }
 
-    public static class SmallestIntegerFinder {
-        public static int findSmallestInt(int[] args) {
-            return IntStream.of(args).min().getAsInt();
+    public static class Rps {
+        public static String game(String p1, String p2) {
+            if (Objects.equals(p1, p2)) {
+                return "Draw!";
+            }
+            switch (p1) {
+                case "scissors" :
+                    if (Objects.equals(p2, "rock")) return "Player 2 won!";
+                    else if (Objects.equals(p2, "paper")) return "Player 1 won!";
+                case "rock" :
+                    if (Objects.equals(p2, "paper")) return "Player 2 won!";
+                    else if (Objects.equals(p2, "scissors")) return "Player 1 won!";
+                case "paper" :
+                    if (Objects.equals(p2, "scissors")) return "Player 2 won!";
+                    else if (Objects.equals(p2, "rock")) return "Player 1 won!";
+                default: return "Incorrect choose";
+            }
+
         }
     }
 
-    public static class SmallestIntegerFinderTest {
+    public static class RpsTest {
 
         @Test
-        public void example1(){
-            int expected = 11;
-            int actual = SmallestIntegerFinder.findSmallestInt(new int[]{78,56,232,12,11,43});
-            assertEquals(expected, actual);
+        public void test1() {
+            System.out.println("Fixed Tests Player 1 won!");
+            assertEquals("Player 1 won!", Rps.game("rock", "scissors"));
+            assertEquals("Player 1 won!", Rps.game("scissors", "paper"));
+            assertEquals("Player 1 won!", Rps.game("paper", "rock"));
         }
-
-
         @Test
-        public void example2(){
-            int expected = -33;
-            int actual = SmallestIntegerFinder.findSmallestInt(new int[]{78,56,-2,12,8,-33});
-            assertEquals(expected, actual);
+        public void test2() {
+            System.out.println("Fixed Tests Player 2 won!");
+            assertEquals("Player 2 won!", Rps.game("scissors", "rock"));
+            assertEquals("Player 2 won!", Rps.game("paper", "scissors"));
+            assertEquals("Player 2 won!", Rps.game("rock", "paper"));
+        }
+        @Test
+        public void test3() {
+            System.out.println("Fixed Tests Draw!");
+            assertEquals("Draw!", Rps.game("scissors", "scissors"));
+            assertEquals("Draw!", Rps.game("paper", "paper"));
+            assertEquals("Draw!", Rps.game("rock", "rock"));
         }
 
-        @Test
-        public void example3(){
-            int expected = Integer.MIN_VALUE;
-            int actual = SmallestIntegerFinder.findSmallestInt(new int[]{0,Integer.MIN_VALUE,Integer.MAX_VALUE});
-            assertEquals(expected, actual);
-        }
+//        private static String sol(String p1, String p2){
+//            if (Objects.equals(p1, "rock") && Objects.equals(p2, "scissors")
+//                    || Objects.equals(p1, "scissors") && Objects.equals(p2, "paper")
+//                    || Objects.equals(p1, "paper") && Objects.equals(p2, "rock"))
+//                return "Player 1 won!";
+//            else if (Objects.equals(p1, p2)) return "Draw!";
+//            else return "Player 2 won!";
+//        }
+//
+//        @Test
+//        public void randomTests(){
+//            Random r = new Random();
+//            String [] arr = {"scissors", "rock", "paper"};
+//            String a = arr[r.nextInt(3)];
+//            String b = arr[r.nextInt(3)];
+//            assertEquals("Should work when p1 = " + a + ", p2 = " + b, sol(a, b), Rps.game(a, b));
+//        }
     }
 
 }
