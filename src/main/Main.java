@@ -16,21 +16,11 @@ public class Main {
 
     public static class Rps {
         public static String game(String p1, String p2) {
-            if (Objects.equals(p1, p2)) {
-                return "Draw!";
-            }
-            switch (p1) {
-                case "scissors" :
-                    if (Objects.equals(p2, "rock")) return "Player 2 won!";
-                    else if (Objects.equals(p2, "paper")) return "Player 1 won!";
-                case "rock" :
-                    if (Objects.equals(p2, "paper")) return "Player 2 won!";
-                    else if (Objects.equals(p2, "scissors")) return "Player 1 won!";
-                case "paper" :
-                    if (Objects.equals(p2, "scissors")) return "Player 2 won!";
-                    else if (Objects.equals(p2, "rock")) return "Player 1 won!";
-                default: return "Incorrect choose";
-            }
+            if (Objects.equals(p1, p2)) return "Draw!";
+            int plr = (p1 + p1).equals("scissorspaper") ||
+                    (p1 + p1).equals("paperrock") ||
+                    (p1 + p1).equals("rockscissors") ? 1:2;
+            return "Player " + plr + " won!";
 
         }
     }
